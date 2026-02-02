@@ -54,6 +54,7 @@ img {
     border-radius: 15px;
     text-align: center;
     color: white;
+    transition: all 0.3s ease-in;
 }
 
 .btn-secondary {
@@ -66,6 +67,7 @@ img {
     text-align: center;
     color: black;
     border: 1px solid rgb(87, 86, 86);
+    transition: all 0.3s ease-in;
 }
 
 .btn-primary span {
@@ -74,6 +76,21 @@ img {
 
 .btn-secondary span {
     font-size: 20px;
+}
+
+.btn-secondary:hover {
+    background-color: #02341a;
+    color: white;
+}
+
+.btn-primary:hover {
+    background-color: white;
+    color: black;
+}
+
+.btn-transperant:hover {
+    background-color: #003518;
+    color: white !important;
 }
 
 header {
@@ -530,6 +547,7 @@ header,
     border: 2px solid rgba(195, 195, 195, 0.447);
     border-radius: 10px;
     color: #d5d5d4;
+    transition: all 0.3s ease   ;
 }
 
 .services-card-grid {
