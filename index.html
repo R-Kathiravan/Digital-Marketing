@@ -39,25 +39,33 @@
         </div>
     </header>
     <section class="hero">
-        <div class="container hero-content">
-            <div class="brand-line">
-                <span></span>
-                <h2 class="brand-text" data-aos="fade" data-aos-delay="100">STACKLY</h2>
-                <span></span>
-            </div>
-            <div class="hero-head" data-aos="fade" data-aos-delay="200">
-                <h1>Digital Marketing Agency</h1>
-            </div>
-            <div class="hero-desc" data-aos="fade" data-aos-delay="300">
-                <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Sunt voluptatem consectetur natus dolore
-                    obcaecati nulla maxime veniam ad odit aperiam voluptates cum aut</p>
-            </div>
-            <div class="hero-btn" data-aos="fade-up">
-                <a href="404page.html" class="btn-primary">Get in Touch <span
-                        class="material-icons">arrow_outward</span> </a>
-                <a href="404page.html" class="btn-secondary">Learn More
-                    <span class="material-icons">south_east</span>
-                </a>
+        <div class="hero-section" id="hero">
+            <div class="container hero-content" id="tilt-content">
+
+                <div class="brand-line">
+                    <span></span>
+                    <h2 class="brand-text">STACKLY</h2>
+                    <span></span>
+                </div>
+                <div class="hero-head" data-aos="fade-up">
+                    <h1>Digital Marketing<br>Agency</h1>
+                </div>
+
+                <div class="hero-desc">
+                    <p>Crafting impactful, user-centric experiences with cutting-edge design and technology for maximum
+                        success.</p>
+                </div>
+
+                <div class="hero-btn">
+                    <a href="404page.html" class="btn-primary">
+                        Get in Touch
+                        <span class="material-icons">arrow_outward</span>
+                    </a>
+                    <a href="404page.html" class="btn-secondary">
+                        Learn More
+                        <span class="material-icons">south_east</span>
+                    </a>
+                </div>
             </div>
         </div>
         <div class="brand" data-aos="fade-down">
@@ -515,27 +523,20 @@
             const btnLeft = document.getElementById('btn-left');
             const btnRight = document.getElementById('btn-right');
 
-            // Configuration
             let currentIndex = 0;
             const totalItems = document.querySelectorAll('.team-content').length;
 
-            // --- UPDATED LOGIC HERE ---
-            // If screen is <= 768px, return 1. Otherwise return 6.
             const getItemsToShow = () => window.innerWidth <= 768 ? 1 : 6;
 
             let itemsToShow = getItemsToShow();
             let maxIndex = totalItems - itemsToShow;
 
-            // Auto-play state
             let autoPlayDirection = 1;
             let autoPlayInterval;
 
-            // Recalculate on window resize
             window.addEventListener('resize', () => {
                 itemsToShow = getItemsToShow();
                 maxIndex = totalItems - itemsToShow;
-
-                // Safety check: if we resized and index is now out of bounds
                 if (currentIndex > maxIndex) currentIndex = maxIndex;
 
                 updateCarousel();
@@ -545,13 +546,10 @@
                 if (currentIndex < 0) currentIndex = 0;
                 if (currentIndex > maxIndex) currentIndex = maxIndex;
 
-                // Math: If showing 1 item, move 100% per slide.
-                // If showing 6 items, move 16.66% per slide.
                 const percentage = currentIndex * (100 / itemsToShow);
                 track.style.transform = `translateX(-${percentage}%)`;
             }
 
-            // --- Auto Play (Ping Pong) ---
             function startAutoPlay() {
                 stopAutoPlay();
                 autoPlayInterval = setInterval(() => {
@@ -559,10 +557,10 @@
 
                     if (currentIndex >= maxIndex) {
                         currentIndex = maxIndex;
-                        autoPlayDirection = -1; // Reverse to Left
+                        autoPlayDirection = -1;
                     } else if (currentIndex <= 0) {
                         currentIndex = 0;
-                        autoPlayDirection = 1; // Reverse to Right
+                        autoPlayDirection = 1;
                     }
 
                     updateCarousel();
@@ -573,7 +571,6 @@
                 clearInterval(autoPlayInterval);
             }
 
-            // Buttons
             btnRight.addEventListener('click', () => {
                 stopAutoPlay();
                 if (currentIndex < maxIndex) {
@@ -592,7 +589,6 @@
                 startAutoPlay();
             });
 
-            // Init
             updateCarousel();
             startAutoPlay();
         });
@@ -603,20 +599,17 @@
             const btnNext = document.getElementById('review-next');
             const btnPrev = document.getElementById('review-prev');
 
-            // Configuration
             let currentIndex = 0;
             const totalItems = document.querySelectorAll('.client-card').length;
 
-            // LOGIC: Show 1 on mobile, 2 on desktop
             const getItemsToShow = () => window.innerWidth <= 768 ? 1 : 2;
 
             let itemsToShow = getItemsToShow();
             let maxIndex = totalItems - itemsToShow;
 
-            let autoPlayDirection = 1; // 1 = Forward, -1 = Backward
+            let autoPlayDirection = 1;
             let autoPlayInterval;
 
-            // Handle Resize
             window.addEventListener('resize', () => {
                 itemsToShow = getItemsToShow();
                 maxIndex = totalItems - itemsToShow;
@@ -625,41 +618,34 @@
             });
 
             function updateCarousel() {
-                // Safety check for bounds
                 if (currentIndex < 0) currentIndex = 0;
                 if (currentIndex > maxIndex) currentIndex = maxIndex;
 
-                // Math: 
-                // If showing 2 items: move 50% per slide.
-                // If showing 1 item: move 100% per slide.
                 const percentage = currentIndex * (100 / itemsToShow);
                 track.style.transform = `translateX(-${percentage}%)`;
             }
 
-            // --- Auto Play (Ping Pong) ---
             function startAutoPlay() {
-                stopAutoPlay(); // Clear existing
+                stopAutoPlay();
                 autoPlayInterval = setInterval(() => {
                     currentIndex += autoPlayDirection;
 
-                    // Bounce logic
                     if (currentIndex >= maxIndex) {
                         currentIndex = maxIndex;
-                        autoPlayDirection = -1; // Switch to moving Left
+                        autoPlayDirection = -1;
                     } else if (currentIndex <= 0) {
                         currentIndex = 0;
-                        autoPlayDirection = 1; // Switch to moving Right
+                        autoPlayDirection = 1;
                     }
 
                     updateCarousel();
-                }, 3500); // 3.5 seconds per slide
+                }, 3500);
             }
 
             function stopAutoPlay() {
                 clearInterval(autoPlayInterval);
             }
 
-            // Button Events
             btnNext.addEventListener('click', () => {
                 stopAutoPlay();
                 if (currentIndex < maxIndex) {
@@ -678,7 +664,6 @@
                 startAutoPlay();
             });
 
-            // Initialize
             updateCarousel();
             startAutoPlay();
         });
@@ -703,9 +688,32 @@
         hamburger.addEventListener("click", openMenu);
         closeMenu.addEventListener("click", closeNav);
 
-        // Optional: close menu when clicking a link
         document.querySelectorAll(".nav-items a").forEach(link => {
             link.addEventListener("click", closeNav);
+        });
+    </script>
+    <script>
+        const heroSection = document.getElementById('hero');
+        const content = document.getElementById('tilt-content');
+
+        heroSection.addEventListener('mousemove', (e) => {
+            const { clientX, clientY } = e;
+            const { offsetWidth, offsetHeight } = heroSection;
+
+            const xPos = (clientX / offsetWidth) * 100;
+            const yPos = (clientY / offsetHeight) * 100;
+
+            heroSection.style.setProperty('--mouse-x', `${xPos}%`);
+            heroSection.style.setProperty('--mouse-y', `${yPos}%`);
+
+            const moveX = (clientX - offsetWidth / 2) / 40;
+            const moveY = (clientY - offsetHeight / 2) / 40;
+
+            content.style.transform = `translate(${moveX}px, ${moveY}px)`;
+        });
+
+        heroSection.addEventListener('mouseleave', () => {
+            content.style.transform = `translate(0px, 0px)`;
         });
     </script>
 </body>
